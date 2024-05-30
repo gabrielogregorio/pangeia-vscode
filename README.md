@@ -15,8 +15,7 @@ and add this config, put apiTags to `pangeia-api`, exemple:
 ```json
 {
   "pangeiaVscode": {
-    "apiTags": "http://127.0.0.1:3333/schemas/tags"
+    "apiTags": "http://127.0.0.1:3333"
   }
 }
-``
 ```
