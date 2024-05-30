@@ -19,13 +19,15 @@ async function fetchData(apiTags: string): Promise<any> {
   }
 }
 
-export function fetchTags() {
-  const baseUrlTags = vscode.workspace.getConfiguration().get('pangeiaVscode.apiTags') as string;
+const DEFAULT_API_URL = 'http://127.0.0.1:3333';
 
-  if (!baseUrlTags) {
-    logger(getTemplateErrorMessageNeedsConfig());
-    return;
-  }
+export function fetchTags() {
+  const baseUrlTags = (vscode.workspace.getConfiguration().get('pangeiaVscode.apiTags') as string) || DEFAULT_API_URL;
+
+  // if (!baseUrlTags) { // TODO: handle this
+  //   logger(getTemplateErrorMessageNeedsConfig());
+  //   return;
+  // }
 
   fetchData(baseUrlTags.endsWith('/') ? baseUrlTags + 'schemas/tags' : baseUrlTags + '/schemas/tags')
     .then((res) => {
